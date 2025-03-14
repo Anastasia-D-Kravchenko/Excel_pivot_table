@@ -1,0 +1,24 @@
+Database Schema
+The database consists of four main tables:
+* Projects: Stores information about projects, including project ID, name, start and end dates, project manager, status, budget, client name, and client contact.
+* Tasks: Stores information about tasks within projects, including task ID, name, description, due date, priority, assigned team member, and the project it belongs to (foreign key referencing Projects table).
+* TeamMembers: Stores information about team members working on projects, including team member ID, name, role, skillset, hourly rate, and the project they are assigned to (foreign key referencing Projects table).
+* TimeTracking: Stores time spent by team members on tasks, including time tracking ID, team member ID (foreign key referencing TeamMembers table), task ID (foreign key referencing Tasks table), date, and hours spent.
+Additional information
+Data Types
+* Integer (INT): Used for numeric data like IDs, priorities, and hourly rates.
+* Varchar(length): Used for variable-length character data like project names, descriptions, client names, and skillsets. Length is specified in parentheses.
+* Date: Used to store date information like start and end dates, due dates, and time tracking dates.
+* Decimal(precision, scale): Used for decimal values with a specified precision (total number of digits) and scale (number of digits after the decimal point) like budget and hours spent.
+Constraints
+* Primary Key: Each table has a primary key column (or set of columns) that uniquely identifies each row. 
+o Projects: ProjectID
+o Tasks: TaskID
+o TeamMembers: TeamMemberID
+o TimeTracking: TimeTrackingID
+* Foreign Key: These enforce relationships between tables. A foreign key references the primary key of another table. 
+o Tasks.ProjectID references Projects.ProjectID (ensures tasks belong to existing projects)
+o TeamMembers.ProjectID references Projects.ProjectID (ensures team members are assigned to existing projects)
+o TimeTracking.TeamMemberID references TeamMembers.TeamMemberID (ensures time is tracked for existing team members)
+o TimeTracking.TaskID references Tasks.TaskID (ensures time is tracked for existing tasks)
+
